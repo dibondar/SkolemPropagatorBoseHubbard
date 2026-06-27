@@ -1,0 +1,8 @@
+# Ignore all dot-folders
+.*/
+
+# Ignore all PNG images
+*.png
+
+# Python cache
+__pycache__/

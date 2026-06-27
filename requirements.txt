@@ -1,0 +1,10 @@
+# Direct dependencies for the Skolem Propagator Bose-Hubbard project.
+# Versions pinned to a known-good set (Python 3.12) for reproducibility.
+# Transitive deps (numpy, scipy, numba, ...) are resolved by pip.
+
+quspin==1.0.1
+
+# Notebook / plotting support (needed to run the demo_*.ipynb files)
+ipykernel==7.3.0
+jupyter==1.1.1
+matplotlib==3.11.0
