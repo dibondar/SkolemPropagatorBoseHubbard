@@ -20,12 +20,15 @@ The time evolution is then built with a **split-operator** scheme:
 
 1. **Single-bond exponential.** The tridiagonal blocks are diagonalized
    independently with `eigh_tridiagonal`, giving the exact bond propagator
-   `exp(-i·dt·H_bond)` (an `O(D log D)`-style cost instead of dense `O(D³)`).
-2. **Skolem shift.** A relabeling of the basis — implemented as the cheap
+   `exp(-i·dt·H_bond)` (an `O(D^2)`-style cost instead of dense `O(D³)`).
+   Note that cost can be brought down to `O(D log D)` if the algorithm
+   [Coakley, Rokhlin *Appl. Comp. Harm. Anal.* **34**, 379 (2012)](https://doi.org/10.1016/j.acha.2012.06.003)
+   is used.
+3. **Skolem shift.** A relabeling of the basis — implemented as the cheap
    index permutation `psi[indx]` rather than a matrix product — cyclically
    rotates the sites so that *every* bond can reuse the *same* tridiagonal
    exponential.
-3. **Sweep.** Applying the exponential interleaved with the shift `K` times
+4. **Sweep.** Applying the exponential interleaved with the shift `K` times
    propagates the full ring (periodic boundary conditions); a slightly modified
    sweep with an extra on-site phase at the ends handles open boundaries.
 
